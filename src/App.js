@@ -2,6 +2,7 @@ import React from 'react';
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
 import Todo from './components/TodoComponents/Todo';
+import { underline } from 'ansi-colors';
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -13,7 +14,7 @@ class App extends React.Component {
       todo: {
         task: '',
         id: '',
-        completed: ''
+        completed: 'false'
       },
       placeholder: ''
     };
@@ -26,10 +27,15 @@ class App extends React.Component {
       todo: {
         task: '',
         id: '',
-        completed: ''
+        completed: 'false'
       },
       placeholder: 'fff'
     });
+  }
+
+  taskComplete = event => {
+    //console.log(event.target.value);
+    console.log(Boolean(event.target.getAttribute('completed')));
   }
 
   handleChange = event => {
@@ -45,7 +51,7 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <Todo todoList={this.state.TodoState} />
+        <Todo todoList={this.state.TodoState} taskComplete={this.taskComplete} />
         {console.log(this.state.TodoState)}
         <TodoForm onChange={this.handleChange} onSubmit={this.addTask} task={this.state.todo.task} />
       </div>

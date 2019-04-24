@@ -45,7 +45,7 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        
+        <Todo todoList={this.state.TodoState} />
         {console.log(this.state.TodoState)}
         <TodoForm onChange={this.handleChange} onSubmit={this.addTask} task={this.state.todo.task} />
       </div>

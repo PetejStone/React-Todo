@@ -5,9 +5,9 @@ import TodoList from './TodoList'
 
 const Todo = props => {
     return (
-        <div>
-            {console.log(TodoList())}
-          </div>
+        <ul>
+            {props.todoList.map(todo => <li>{todo.task}</li>)}
+        </ul>
     );
 }
 

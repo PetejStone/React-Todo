@@ -14,7 +14,8 @@ class App extends React.Component {
         task: '',
         id: '',
         completed: ''
-      }
+      },
+      placeholder: ''
     };
   }
 
@@ -26,7 +27,8 @@ class App extends React.Component {
         task: '',
         id: '',
         completed: ''
-      }
+      },
+      placeholder: 'fff'
     });
   }
 
@@ -35,7 +37,7 @@ class App extends React.Component {
     this.setState({
       todo: {
         ...this.state.todo,
-        task: event.target.value
+        [event.target.name]: event.target.value
       }
     });
   }
@@ -45,7 +47,7 @@ class App extends React.Component {
         <h2>Welcome to your Todo App!</h2>
         
         {console.log(this.state.TodoState)}
-        <TodoForm onChange={this.handleChange} onSubmit={this.addTask} />
+        <TodoForm onChange={this.handleChange} onSubmit={this.addTask} task={this.state.todo.task} />
       </div>
     );
   }

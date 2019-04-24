@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
-
+import Todo from './components/TodoComponents/Todo';
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      todoProp: props.TodoList,
+      TodoState: TodoList(),
       todo: {
         task: '',
         id: '',
@@ -21,7 +21,7 @@ class App extends React.Component {
   addTask = event => {
     event.preventDefault();
     this.setState({
-      todoProp: [...this.state.todoData, this.state.todo],
+      TodoState: [...this.state.TodoState, this.state.todo],
       todo: {
         task: '',
         id: '',
@@ -31,15 +31,21 @@ class App extends React.Component {
   }
 
   handleChange = event => {
+    console.log(event.target.value);
     this.setState({
-
+      todo: {
+        ...this.state.todo,
+        task: event.target.value
+      }
     });
   }
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm />
+        
+        {console.log(this.state.TodoState)}
+        <TodoForm onChange={this.handleChange} onSubmit={this.addTask} />
       </div>
     );
   }

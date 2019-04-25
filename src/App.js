@@ -38,11 +38,17 @@ class App extends React.Component {
     let currentIndex = currentTask.indexOf(event.target.innerText);
     currentTask = this.state.TodoState[currentIndex];
     currentTask.completed = !currentTask.completed;
+    this.setState({
+      ...this.state.todo,
+      [event.target.value]: currentTask.completed
+      
+    });
+    
     console.log(currentTask)
     
-    if (currentTask.completed) {
+    if (currentTask.completed === true) {
       event.target.className += ' complete';
-    } else {
+    } else if (currentTask.completed === false){
       event.target.className = 'task';
     }
   }
@@ -71,6 +77,7 @@ class App extends React.Component {
       TodoState: newList,
     })
     console.log(this.state.TodoState);
+    console.log(this.state.TodoState.map(todo => todo));
   }
 
   

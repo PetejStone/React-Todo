@@ -41,9 +41,9 @@ class App extends React.Component {
     console.log(currentTask)
     
     if (currentTask.completed) {
-      event.target.setAttribute("class", 'complete');
+      event.target.className += ' complete';
     } else {
-      event.target.setAttribute("class", "");
+      event.target.className = 'task';
     }
   }
 
@@ -57,15 +57,31 @@ class App extends React.Component {
     });
   }
 
+  filterComplete = event => {
+    event.preventDefault();
+    //console.log(this.state.TodoState);
+    const newList = this.state.TodoState.filter(function (task){
+      if (!task.completed) {
+        return true
+      } else {
+        return false
+      }
+    });
+    this.setState({
+      TodoState: newList,
+    })
+    console.log(this.state.TodoState);
+  }
+
   
 
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <Todo className="" todoList={this.state.TodoState} taskComplete={this.taskComplete} ifComplete={this.ifComplete}/>
+        <Todo className="task" todoList={this.state.TodoState} taskComplete={this.taskComplete} ifComplete={this.ifComplete}/>
         {console.log(this.state.TodoState)}
-        <TodoForm onChange={this.handleChange} onSubmit={this.addTask} task={this.state.todo.task} />
+        <TodoForm onChange={this.handleChange} onSubmit={this.addTask} task={this.state.todo.task} filterComplete={this.filterComplete}/>
       </div>
     );
   }

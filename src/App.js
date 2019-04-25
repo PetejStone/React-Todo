@@ -44,13 +44,6 @@ class App extends React.Component {
       
     });
     
-    console.log(currentTask)
-    
-    if (currentTask.completed === true) {
-      event.target.className += ' complete';
-    } else if (currentTask.completed === false){
-      event.target.className = 'task';
-    }
   }
 
   handleChange = event => {

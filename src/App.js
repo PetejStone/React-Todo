@@ -38,7 +38,13 @@ class App extends React.Component {
     let currentIndex = currentTask.indexOf(event.target.innerText);
     currentTask = this.state.TodoState[currentIndex];
     currentTask.completed = !currentTask.completed;
-    console.log(currentTask.completed)
+    console.log(currentTask)
+    
+    if (currentTask.completed) {
+      event.target.setAttribute("class", 'complete');
+    } else {
+      event.target.setAttribute("class", "");
+    }
   }
 
   handleChange = event => {
@@ -51,15 +57,14 @@ class App extends React.Component {
     });
   }
 
-  ifComplete = event => {
-    console.log(event.target.checked)
-  }
+  
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <Todo todoList={this.state.TodoState} taskComplete={this.taskComplete} ifComplete={this.ifComplete}/>
-        //console.log(this.state.TodoState)
+        <Todo className="" todoList={this.state.TodoState} taskComplete={this.taskComplete} ifComplete={this.ifComplete}/>
+        {console.log(this.state.TodoState)}
         <TodoForm onChange={this.handleChange} onSubmit={this.addTask} task={this.state.todo.task} />
       </div>
     );

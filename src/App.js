@@ -13,8 +13,8 @@ class App extends React.Component {
       TodoState: TodoList(),
       todo: {
         task: '',
-        id: '',
-        completed: ''
+        id: Date.now(),
+        completed: false
       },
       placeholder: ''
     };
@@ -26,8 +26,8 @@ class App extends React.Component {
       TodoState: [...this.state.TodoState, this.state.todo],
       todo: {
         task: '',
-        id: '',
-        completed: ''
+        id: Date.now(),
+        completed: false
       },
       placeholder: ''
     });
@@ -40,7 +40,7 @@ class App extends React.Component {
     currentTask.completed = !currentTask.completed;
     this.setState({
       ...this.state.todo,
-      [event.target.value]: currentTask.completed
+      [currentTask]: !currentTask.completed
       
     });
     
@@ -86,7 +86,7 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <Todo className="task" todoList={this.state.TodoState} taskComplete={this.taskComplete} ifComplete={this.ifComplete}/>
+        <Todo className="task" todoList={this.state.TodoState} taskComplete={this.taskComplete} ifComplete={this.ifComplete} />
         {console.log(this.state.TodoState)}
         <TodoForm onChange={this.handleChange} onSubmit={this.addTask} task={this.state.todo.task} filterComplete={this.filterComplete}/>
       </div>

@@ -7,17 +7,17 @@ const TodoList = props => {
          [
             {
               task: 'Clean Room',
-              id: Date.now(),
+              id: Date.now()+1,
               completed: false
             },
             {
               task: 'Get Oil Change',
-              id: Date.now(),
+              id: Date.now()+2,
               completed: false
             },
             {
               task: 'Get a Job',
-              id: Date.now(),
+              id: Date.now()+3,
               completed: false
             }
           ]

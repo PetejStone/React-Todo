@@ -14,7 +14,7 @@ class App extends React.Component {
       todo: {
         task: '',
         id: '',
-        completed: 'false'
+        completed: ''
       },
       placeholder: ''
     };
@@ -27,15 +27,18 @@ class App extends React.Component {
       todo: {
         task: '',
         id: '',
-        completed: 'false'
+        completed: ''
       },
-      placeholder: 'fff'
+      placeholder: ''
     });
   }
 
   taskComplete = event => {
-    //console.log(event.target.value);
-    console.log(Boolean(event.target.getAttribute('completed')));
+    let currentTask = this.state.TodoState.map(todo => todo.task);
+    let currentIndex = currentTask.indexOf(event.target.innerText);
+    currentTask = this.state.TodoState[currentIndex];
+    currentTask.completed = !currentTask.completed;
+    console.log(currentTask.completed)
   }
 
   handleChange = event => {
@@ -47,12 +50,16 @@ class App extends React.Component {
       }
     });
   }
+
+  ifComplete = event => {
+    console.log(event.target.checked)
+  }
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <Todo todoList={this.state.TodoState} taskComplete={this.taskComplete} />
-        {console.log(this.state.TodoState)}
+        <Todo todoList={this.state.TodoState} taskComplete={this.taskComplete} ifComplete={this.ifComplete}/>
+        //console.log(this.state.TodoState)
         <TodoForm onChange={this.handleChange} onSubmit={this.addTask} task={this.state.todo.task} />
       </div>
     );

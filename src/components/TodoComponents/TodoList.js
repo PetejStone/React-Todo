@@ -8,17 +8,23 @@ const TodoList = props => {
             {
               task: 'Clean Room',
               id: Date.now()+1,
-              completed: false
+              completed: false,
+              key: Date.now()+1
+             
             },
             {
               task: 'Get Oil Change',
               id: Date.now()+2,
-              completed: false
+              completed: false,
+              key: Date.now()+2
+              
             },
             {
               task: 'Get a Job',
               id: Date.now()+3,
-              completed: false
+              completed: false,
+              key: Date.now()+3
+              
             }
           ]
     );

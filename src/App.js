@@ -14,7 +14,8 @@ class App extends React.Component {
       todo: {
         task: '',
         id: Date.now(),
-        completed: false
+        completed: false,
+        key: Date.now()
       },
       placeholder: ''
     };
@@ -22,12 +23,14 @@ class App extends React.Component {
 
   addTask = event => {
     event.preventDefault();
+    if (event.target.value = null || " ")
     this.setState({
       TodoState: [...this.state.TodoState, this.state.todo],
       todo: {
         task: '',
         id: Date.now(),
-        completed: false
+        completed: false,
+        key: Date.now()
       },
       placeholder: ''
     });

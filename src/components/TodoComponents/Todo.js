@@ -1,12 +1,12 @@
 import React from 'react';
 import TodoList from './TodoList'
-
+import './Todo.scss';
 
 
 const Todo = props => {
     return (
         <ul>
-            {props.todoList.map(todo => <li onClick={props.taskComplete} completed={todo.completed} name="hello">{todo.task}</li>)}
+            {props.todoList.map(todo => <li className={`task ${todo.completed ? "complete" : "not-complete"}`} onClick={props.taskComplete}  >{todo.task}</li>)}
         </ul>
     );
 }

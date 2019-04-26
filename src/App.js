@@ -13,8 +13,9 @@ class App extends React.Component {
       TodoState: TodoList(),
       todo: {
         task: '',
-        id: '',
-        completed: 'false'
+        id: Date.now(),
+        completed: false,
+        key: Date.now()
       },
       placeholder: ''
     };
@@ -22,20 +23,30 @@ class App extends React.Component {
 
   addTask = event => {
     event.preventDefault();
+    if (event.target.value = null || " ")
     this.setState({
       TodoState: [...this.state.TodoState, this.state.todo],
       todo: {
         task: '',
-        id: '',
-        completed: 'false'
+        id: Date.now(),
+        completed: false,
+        key: Date.now()
       },
-      placeholder: 'fff'
+      placeholder: ''
     });
   }
 
   taskComplete = event => {
-    //console.log(event.target.value);
-    console.log(Boolean(event.target.getAttribute('completed')));
+    let currentTask = this.state.TodoState.map(todo => todo.task);
+    let currentIndex = currentTask.indexOf(event.target.innerText);
+    currentTask = this.state.TodoState[currentIndex];
+    currentTask.completed = !currentTask.completed;
+    this.setState({
+      ...this.state.todo,
+      [currentTask]: !currentTask.completed
+      
+    });
+    
   }
 
   handleChange = event => {
@@ -47,13 +58,33 @@ class App extends React.Component {
       }
     });
   }
+
+  filterComplete = event => {
+    event.preventDefault();
+    //console.log(this.state.TodoState);
+    const newList = this.state.TodoState.filter(function (task){
+      if (!task.completed) {
+        return true
+      } else {
+        return false
+      }
+    });
+    this.setState({
+      TodoState: newList,
+    })
+    console.log(this.state.TodoState);
+    console.log(this.state.TodoState.map(todo => todo));
+  }
+
+  
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <Todo todoList={this.state.TodoState} taskComplete={this.taskComplete} />
+        <Todo className="task" todoList={this.state.TodoState} taskComplete={this.taskComplete} ifComplete={this.ifComplete} />
         {console.log(this.state.TodoState)}
-        <TodoForm onChange={this.handleChange} onSubmit={this.addTask} task={this.state.todo.task} />
+        <TodoForm onChange={this.handleChange} onSubmit={this.addTask} task={this.state.todo.task} filterComplete={this.filterComplete}/>
       </div>
     );
   }
